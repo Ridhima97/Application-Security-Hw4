@@ -1,7 +1,6 @@
 package com.example.giftcardsite
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.giftcardsite.api.model.RegisterInfo
 import com.example.giftcardsite.api.model.User
 import com.example.giftcardsite.api.service.UserInterface
@@ -45,7 +43,7 @@ class SecondFragment : Fragment() {
             var password : String = view.findViewById<EditText>(R.id.registerPassword).text.toString()
             var password2 : String = view.findViewById<EditText>(R.id.registerConfirmPassword).text.toString()
 
-            var builder: Retrofit.Builder = Retrofit.Builder().baseUrl("http://appsecclass.report").addConverterFactory(GsonConverterFactory.create())
+            var builder: Retrofit.Builder = Retrofit.Builder().baseUrl("https://appsecclass.report").addConverterFactory(GsonConverterFactory.create())
             var retrofit: Retrofit = builder.build()
             var client: UserInterface = retrofit.create(UserInterface::class.java)
             var loggedInUser: User? = null;
@@ -66,9 +64,7 @@ class SecondFragment : Fragment() {
                         loggedInUser = response.body()
                         Log.d("Register Success", "Register success. Boo.")
                         Log.d("Register Success", "Token:" + loggedInUser?.token.toString())
-                        var intent = Intent(Intent.ACTION_VIEW)
-                        intent.type = "text/giftcards_browse"
-                        intent.data = Uri.parse("https://appsecclass.report/api/index")
+                        var intent = Intent(activity, ProductScrollingActivity::class.java)
                         intent.putExtra("User", loggedInUser);
                         startActivity(intent)
                     }

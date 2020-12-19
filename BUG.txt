@@ -1,0 +1,6 @@
+Part 4 answer: 
+
+The vulnerability found in the files exists partly because the token used in the files UseCard.kt and CardInterface.kt stays the same and there is no proper authentication system to ensure a user can use only his own cards. The function for using the card takes a "token" and a card number for the process and uses a Put request to initiate the use of a card. However, a malicious user can use his own token and if he knows the card number of someone else, he can use the card. This was tested by sending several API calls and was confirmed.
+
+To fix this, firstly what can be done is to generate a new token for each new session/transaction done on the website by a user. A private (secret) nonce of sorts can be used, which will authenticate the user to his own collection of giftcards that can be used. Next, we can provide a check that the card number used is related to the user using them, either by checking the database or in some other way. 
+

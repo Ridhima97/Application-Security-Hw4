@@ -1,0 +1,16 @@
+Part 2 Answers:
+
+1. The 2 types of intents are Explicit Intent and Implicit Intent. Explicit intents name the application that shall satisfy the intent. This is usually used when designing your own app, as you can specify the service or activity that is required to start. Implicit intents do not name any component, but state an action that makes a component from another application handle it. 
+
+2. Explicit intents are generally more secure. With implicit intents, one can never be sure about which service is going to be called with the intent for the user, and this is a security concern. 
+
+3. The type of intent in SecondFragment.kt is an Implicit Intent. It created an intent with the 'ACTION_VIEW' action on the given data webpage. It makes the logged in user use another service they wish to view the content. 
+
+4. The type of intent in ThirdFragment.kt is an Explicit Intent. It creates an intent using the ProductScrollingActivity class for the logged in User to use. 
+
+5. The intent used in ThirdFragment.kt (explicit intent) is the right way to declare and create an intent. The implicit one used in the other can have several drawbacks, such as there being no app which can run the required activity leading to a crash, or the app needed having an intent filter that the intent cannot get through - leading to errors. Additionally, the path to it is hard-coded in the data attribute and if the path changes, it can lead to issues.
+
+
+File modified:
+
+The file I modified was SecondFragment.kt where I converted the Implicit Intent to an Explicit intent by declaring the intent with a component i.e the ProductScrollingActivity class in the main file. This redirects a registered user to the products page instead of the api page that had been declared as a url. It is the better way to declare intents - secure and less prone to errors due to changes in the webpage url or such.  
